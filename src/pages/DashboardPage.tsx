@@ -54,7 +54,7 @@ const Dashboard: React.FC = () => {
                     onCategoryChange={(e) => setSelectedCategory(e.target.value)}
                     categories={Array.from(new Set(items.map((item) => item.category)))}
                 />
-                <ItemTable items={filteredItems} setIsModalOpen={setIsModalOpen} />
+                <ItemTable items={filteredItems} setIsModalOpen={setIsModalOpen} setSelectedItem={setSelectedItem} />
             </main>
             {isModalOpen && selectedItem && <ItemModal item={selectedItem} onClose={() => setIsModalOpen(false)} />}
             {isLoading && <Loading />}

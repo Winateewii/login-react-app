@@ -4,9 +4,10 @@ import { Entry } from '../constants/user.interfaces';
 interface ItemTableProps {
     items: Entry[];
     setIsModalOpen: (status: boolean) => void;
+    setSelectedItem: (item: Entry) => void
 }
 
-const ItemTable: React.FC<ItemTableProps> = ({ items, setIsModalOpen }) => (
+const ItemTable: React.FC<ItemTableProps> = ({ items, setIsModalOpen, setSelectedItem }) => (
     <div className="bg-white shadow overflow-hidden sm:rounded-lg">
         <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
@@ -33,7 +34,10 @@ const ItemTable: React.FC<ItemTableProps> = ({ items, setIsModalOpen }) => (
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                             <button
-                                onClick={() => setIsModalOpen(true)}
+                                onClick={() => {
+                                    setIsModalOpen(true)
+                                    setSelectedItem(item)
+                                }}
                                 className="bg-indigo-600 text-white font-semibold py-2 px-4 rounded-md shadow-lg hover:bg-indigo-700"
                             >
                                 More Info
