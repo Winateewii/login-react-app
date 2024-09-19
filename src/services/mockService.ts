@@ -1,8 +1,8 @@
 import { User, Entry } from '../components/constants/user.interfaces'
 
 export const users: User[] = [
-    { username: 'user1', password: 'pass1' },
-    { username: 'user2', password: 'pass2' },
+    { id: 1, username: 'user1', password: 'user1123', role: 'Admin' },
+    { id: 2, username: 'user2', password: 'user2123', role: 'User' },
 ];
 
 export const entries: Entry[] = [
@@ -11,17 +11,20 @@ export const entries: Entry[] = [
     { id: 3, title: 'Entry 3', description: 'Description 3', category: 'Category A' },
     { id: 4, title: 'Entry 4', description: 'Description 4', category: 'Category C' },
 ]
-const getUserData = async () => {
-    try {
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                resolve(users);
-            }, 5000)
-        })
-    } catch (error) {
-        console.error('Error fetching tasks', error)
-        throw error
-    }
+const getUserData = async (username: string, password: string) => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            //just for mock data not the real solution
+            const user = users.find((u) => u.username === username);
+            console.log('user---->', user)
+            console.log('pw---->', `${username}123`)
+            if (user && password === `${username}123`) {
+                resolve(user);
+            } else {
+                reject(new Error('Invalid username or password'));
+            }
+        }, 1000);
+    });
 }
 
 export {

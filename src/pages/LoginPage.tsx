@@ -1,29 +1,76 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { IoPersonSharp } from 'react-icons/io5';
 import { FaLock } from 'react-icons/fa';
 import Header from '../components/login/Header'
 import InputField from "../components/login/InputField"
 import ErrorMessage from "../components/login/ErrorMessage"
 import LoginButton from "../components/login/LoginButton"
+import Loading from '../components/utils/Loading';
+import { useAuth } from '../contexts/AuthContext'
+import { useNavigate } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const LoginPage = () => {
+    const { user, login, isLoading, setIsLoading } = useAuth()
     const [username, setUsername] = useState<string>('')
     const [password, setPassword] = useState<string>('')
     const [loginError, setLoginError] = useState<{ userError?: string; passwordError?: string }>({})
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        if (user) {
+            navigate('/dashboard')
+        }
+    }, [user, navigate])
 
     const handleLogin = async () => {
 
-        setLoginError({ userError: '', passwordError: '' })
-        if (username === "" || password === "") {
-            if (username === "") {
-                console.log('in this user name')
-                setLoginError((prev) => ({ ...prev, userError: "User is required" }));
-            }
-            if (password === "") {
-                setLoginError((prev) => ({ ...prev, passwordError: "Password is required" }));
-            }
+        setLoginError({ userError: '', passwordError: '' });
+
+        const hasErrors = validateInputs();
+        if (hasErrors) return;
+
+        setIsLoading(true);
+        try {
+            const status = await login(username, password);
+            handleLoginResponse(status);
+        } catch (error) {
+            toast.error('Error in processing', { position: 'top-right' });
+        } finally {
+            setIsLoading(false);
         }
+
     }
+
+    const validateInputs = () => {
+        let hasErrors = false;
+
+        if (!username) {
+            setLoginError((prev) => ({ ...prev, userError: 'User is required' }));
+            hasErrors = true;
+        }
+
+        if (!password) {
+            setLoginError((prev) => ({ ...prev, passwordError: 'Password is required' }));
+            hasErrors = true;
+        }
+
+        return hasErrors;
+    };
+
+    const handleLoginResponse = (status: boolean) => {
+        if (status) {
+            toast.success('Login Successfully.', { position: 'top-right' });
+            navigate('/dashboard');
+        } else {
+            toast.error('Invalid username or password', { position: 'top-right' });
+        }
+    };
+
+    const handleError = (message: string) => {
+        toast.error(message, { position: 'top-right' });
+    };
 
     return (
         <div className="max-w-xl">
@@ -58,9 +105,10 @@ const LoginPage = () => {
                     </div>
                 </div>
             </div>
-            {/* {isLoading && (
+            <ToastContainer />
+            {isLoading && (
                 <Loading />
-            )} */}
+            )}
         </div>
     )
 }
