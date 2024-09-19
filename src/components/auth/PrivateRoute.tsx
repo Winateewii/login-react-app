@@ -1,10 +1,10 @@
 import React from 'react';
-import { Route, Navigate, RouteProps } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext'
 
 interface PrivateRouteProps {
-    element: React.ReactElement;
-  }
+  element: React.ReactElement;
+}
 
 const PrivateRoute: React.FC<PrivateRouteProps> = ({ element }) => {
   const { user } = useAuth();

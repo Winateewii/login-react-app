@@ -1,8 +1,9 @@
 export interface Entry {
   id: number;
-  title: string;
-  description: string;
+  name: string;
   category: string;
+  description: string;
+  price: number;
 }
 
 export interface User {
