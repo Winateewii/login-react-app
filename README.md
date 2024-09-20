@@ -1,46 +1,94 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+# Login Page Project
 
-In the project directory, you can run:
+This is a simple login page built using **React** and **TypeScript** with authentication functionality. It includes features like form validation, error handling, loading states, search function and user authentication.
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- User login with form validation
+- Loading spinner during authentication
+- Error display for invalid credentials
+- Search and filtering entries
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Tech Stack
 
-### `npm test`
+- **Frontend:** React, TypeScript, TailwindCSS
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## Prerequisites
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Make sure you have the following installed:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **Node.js** (version 18 or higher)
+- **npm**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Getting Started
 
-### `npm run eject`
+### 1. Clone the Repository
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```bash
+git clone https://github.com/Winateewii/login-react-app.git
+cd login-react-app
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 2. Install Dependencies
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Run the following command to install the project dependencies:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```bash
+npm install
+```
 
-## Learn More
+### 3. Run the Application
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+To run the application locally, execute:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+npm start
+```
+
+The application will be available at `http://localhost:3000`.
+
+### 4. Testing the Application
+
+Once the application is running, you will be able to view a dashboard similar to the following:
+
+![Dashboard](https://ucarecdn.com/911eb080-a884-4620-92b5-9442b5fa281d/-/preview/1000x710/)
+
+Check out the live demo here! : https://login-react-app-six.vercel.app/
+
+### Steps to Test:
+
+1. **Login to the Dashboard:**
+   - After starting the application, you will be prompted to log in.
+   - Use the following test credentials:
+     - **Username:** `user1`
+     - **Password:** `user1123`
+
+2. **Dashboard Overview:**
+   - After logging in, you'll see the dashboard displaying a list of items with columns:
+     - **Name**: Name of the item (e.g., `Item 1`)
+     - **Category**: The category the item belongs to (e.g., `Category A`)
+     - **Price**: Price of the item (e.g., `10.99 $`)
+     - **View Details**: A "More Info" button for each item.
+
+3. **Search and Filter:**
+   - **Search Bar**: Type the name of an item in the search field (e.g., "Item 1") to filter the list.
+   - **Category Filter**: Use the dropdown next to the search bar to filter items by category (e.g., `All Categories`, `Category A`, `Category B`).
+
+4. **View Details:**
+   - Click the **More Info** button next to any item to view detailed information about that item.
+   - A modal window will appear displaying additional details about the selected item.
+
+5. **Logout:**
+   - Click the **Logout** button at the top right to log out of the application.
+
+
+To test login failures, use incorrect credentials like:
+
+- **Username:** `user`
+- **Password:** `wrongpassword`
+
+
+

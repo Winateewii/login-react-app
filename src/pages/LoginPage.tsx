@@ -38,6 +38,8 @@ const LoginPage = () => {
         } catch (error) {
             toast.error('Error in processing', { position: 'top-right' });
         } finally {
+            setUsername('')
+            setPassword('')
             setIsLoading(false);
         }
 
@@ -68,9 +70,6 @@ const LoginPage = () => {
         }
     };
 
-    const handleError = (message: string) => {
-        toast.error(message, { position: 'top-right' });
-    };
 
     return (
         <div className="max-w-xl">
